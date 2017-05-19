@@ -1,7 +1,9 @@
 # Coding exercise
 
 As part of the application process, you must complete this coding exercise. You can either:
+
 1. complete the exercise, upload it to github, and email Wai-Yin the link.
+
 2. complete the exercise, and email Wai-Yin the file.
 
 ## Exercise 1
