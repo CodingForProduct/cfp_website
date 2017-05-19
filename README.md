@@ -48,5 +48,4 @@ workshops. If you drop out, the fee will be donated to Women Who Code.
 ## Other Links
 * We had a Q&A session about the workshop May 17. Here's the [video](https://vimeo.com/218082086)  and [slides](/workshop_qa.pdf)
 * [wiki](https://github.com/wykhuh/coding_for_product/wiki)
-* [Slack group](https://codingforproduct.slack.com)
 
