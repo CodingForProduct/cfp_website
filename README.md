@@ -23,3 +23,7 @@ of intermediate-beginner female coders to create a web application. The workshop
 3. Complete the [coding exercise](coding_exercise.md).
 
 4. Complete the [application](https://goo.gl/forms/gVgMt1WbJsFJWurp1).
+
+Applications are due by June 11th.
+
+Coding exercises are due by June 11th for people with experience in a programming language, and June 18th for people who are doing prep-work for a programming language.

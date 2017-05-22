@@ -3,6 +3,14 @@
 As part of the application process, you must complete this coding exercise. You
 should do the exercises in the language you intend to use for the group project.
 
+This coding exercise will cover:
+* functions (AKA methods)
+* arrays
+* key value pairs (AKA object, dictionary, hash)
+* manipulating strings
+* conditionals
+* looping over a collection
+
 To submit the exercise, you can either:
 
 1. complete the exercise, upload it to your github account, and email Wai-Yin the link.
@@ -11,7 +19,7 @@ To submit the exercise, you can either:
 
 ## Exercise 1
 
-Write a function (AKA method) that when given an key value pair (AKA object, dictionary, hash)
+Write a function that when given an key value pair
 with a title and url, the function will print a linked title.
 
 * If the title is longer than 50 characters, truncate the title to 50 characters followed by 3 ellipses.
