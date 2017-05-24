@@ -3,12 +3,14 @@
 [Philosophie](http://philosophie.is) + [Women Who Code](http://womenwhocode.com) will be holding a series of five workshops where we guide small teams
 of intermediate-beginner female coders to create a web application. The workshops will be held June/July 2017 in Santa Monica.
 
+I'm Wai-Yin Kwan, a developer at [Philosophie](http://philosophie.is), co-organizer of Women Who Code LA, and lead organizer of the workshops. You can reach me at waiyin at philosophie dot is.
+
 ## Links
 * [Summary of the workshop](workshop_summary.md)
 
 * Q&A session: [video](https://vimeo.com/218082086) and [slides](workshop_qa.pdf)
 
-* [Slack group](https://codingforproduct.slack.com/)
+* [Slack group](https://codingforproduct.slack.com/) Slack is basically a fancy chat app. Slack will be the main avenue of communcation for the workshops. You can join the Slack group before completing the application process. Contact Wai-Yin to get access.
 
 * Google Calendar (coming soon)
 
