@@ -3,19 +3,26 @@ var path = require('path');
 var marked = require('marked');
 var fs = require('fs');
 
+// auth
 var auth = require('http-auth');
 var basic = auth.basic({
     realm: "Coding For Product Area.",
     file: __dirname + "/data/users.htpasswd"
 });
 
-var app = express();
+// dotenv
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+}
 
+// markdown
 marked.setOptions({
   highlight: function (code) {
     return require('highlight.js').highlightAuto(code).value;
   }
 });
+
+var app = express();
 
 // view engine
 app.set('view engine', 'ejs');
@@ -56,6 +63,6 @@ app.get('/users', auth.connect(basic), (request, response) => {
   response.send('hi');
 });
 
-app.listen(3000, () => {
-  console.log('server started on port 3000');
+app.listen(process.env.PORT, () => {
+  console.log('server started on port ' + process.env.PORT);
 });
