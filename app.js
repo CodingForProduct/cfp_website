@@ -3,17 +3,21 @@ var path = require('path');
 var marked = require('marked');
 var fs = require('fs');
 
+require('./config/environment');
+var knexConfig = require('./knexfile');
+
+// express
+var app = express();
+
 // auth
 var auth = require('http-auth');
 var basic = auth.basic({
     realm: "Coding For Product Area.",
-    file: __dirname + "/data/users.htpasswd"
+    file: __dirname + "/config/users.htpasswd"
 });
 
-// dotenv
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config();
-}
+// database
+var db = require('knex')(knexConfig[process.env.NODE_ENV]);
 
 // markdown
 marked.setOptions({
@@ -22,7 +26,6 @@ marked.setOptions({
   }
 });
 
-var app = express();
 
 // view engine
 app.set('view engine', 'ejs');
