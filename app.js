@@ -2,6 +2,13 @@ var express = require('express');
 var path = require('path');
 var marked = require('marked');
 var fs = require('fs');
+
+var auth = require('http-auth');
+var basic = auth.basic({
+    realm: "Coding For Product Area.",
+    file: __dirname + "/data/users.htpasswd"
+});
+
 var app = express();
 
 marked.setOptions({
@@ -43,6 +50,10 @@ app.get('/coding_exercise', (request, response) => {
 app.get('/workshop_summary', (request, response) => {
   const file = readFile('/views/markdown/workshop_summary.md');
   response.send(renderMarkdownFile(file));
+});
+
+app.get('/users', auth.connect(basic), (request, response) => {
+  response.send('hi');
 });
 
 app.listen(3000, () => {
