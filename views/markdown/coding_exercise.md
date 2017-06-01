@@ -71,4 +71,3 @@ Output:
 <a href="google.com">Google</a>
 <a href="example.com">really, really, really long title 3 that will be ch…</a>
 ```
-

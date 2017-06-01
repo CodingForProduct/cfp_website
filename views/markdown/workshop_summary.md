@@ -25,12 +25,12 @@ have accomplished during the past week. In week 5, the teams will do a full
 presentation of their app.
 
 ## Prerequisites
-Basic knowledge of html and css.
-Basic knowledge of a programming language (Javascript, Python, etc.).
-Ability to spend 12 hours of week on the project
-Ability to work with small teams
-Must be at least 18 years old
-Must be female or identify with being female
+* Basic knowledge of html and css.
+* Basic knowledge of a programming language (Javascript, Python, etc.).
+* Ability to spend 12 hours of week on the project
+* Ability to work with small teams
+* Must be at least 18 years old
+* Must be female or identify with being female
 
 ## Cost
 The workshops have free-unless-you-flee pricing model. Each participant pays
