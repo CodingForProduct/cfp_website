@@ -1,7 +1,7 @@
 # Coding For Product
 
 [Philosophie](http://philosophie.is) + [Women Who Code](http://womenwhocode.com) will be holding a series of five workshops where we guide small teams
-of intermediate-beginner female coders to create a web application. The workshops will be held June/July 2017 in Santa Monica.
+of intermediate-beginner female coders to create a web application. The workshops will be held every Sunday from 1pm to 5pm, June 25 - July 23, 2017 at Philosophie (1615 16th Street, Santa Monica) .
 
 I'm Wai-Yin Kwan, a developer at [Philosophie](http://philosophie.is), co-organizer of Women Who Code LA, and lead organizer of the workshops. You can reach me at waiyin at philosophie dot is.
 
