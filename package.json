@@ -8,6 +8,9 @@
     "start": "node app.js",
     "migrate": "knex migrate:latest --cwd ./migrations"
   },
+  "engines": {
+    "node": "7.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodingForProduct/workshop_intro.git"
