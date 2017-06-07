@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<h1><%= user.name %></h1>
+
+<dl>
+  <dt>Github</dt>
+  <dd><%= user.github_username %></dd>
+
+  <dt>Programming Experience</dt>
+  <dd><%= user.programming_experience %></dd>
+
+  <dt>Languages</dt>
+  <dd><%= user.languages %></dd>
+
+  <dt>Location</dt>
+  <dd><%= user.location %></dd>
+
+  <dt>Goals</dt>
+  <dd><%= user.goals %></dd>
+</dl>
+
+<% include partials/footer %>

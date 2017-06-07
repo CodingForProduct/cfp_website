@@ -63,8 +63,21 @@ app.get('/workshop_summary', (request, response) => {
 });
 
 app.get('/users', auth.connect(basic), (request, response) => {
-  response.send('hi');
+  db.select().from('users')
+  .then(res => {
+    response.render('users', { users: res });
+  })
 });
+
+app.get('/users/:id', auth.connect(basic), (request, response) => {
+  console.log(request.params.id)
+  db.select().from('users').where('id', request.params.id)
+  .then(res => {
+console.log(res[0])
+    response.render('user', { user: res[0] });
+  })
+});
+
 
 app.listen(process.env.PORT, () => {
   console.log('server started on port ' + process.env.PORT);
