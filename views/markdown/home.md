@@ -6,7 +6,7 @@ of intermediate-beginner female coders to create a web application. The workshop
 I'm Wai-Yin Kwan, a developer at [Philosophie](http://philosophie.is), co-organizer of Women Who Code LA, and lead organizer of the workshops. You can reach me at waiyin at philosophie dot is.
 
 ## Links
-* [Summary of the workshop](workshop_summary.md)
+* [Summary of the workshop](workshop_summary)
 
 * Q&A session: [video](https://vimeo.com/218082086) and [slides](workshop_qa.pdf)
 
@@ -22,7 +22,7 @@ I'm Wai-Yin Kwan, a developer at [Philosophie](http://philosophie.is), co-organi
 
 2. Sign up for a [Github](https://github.com) account.
 
-3. Complete the [coding exercise](coding_exercise.md).
+3. Complete the [coding exercise](coding_exercise).
 
 4. Complete the [application](https://goo.gl/forms/gVgMt1WbJsFJWurp1).
 
