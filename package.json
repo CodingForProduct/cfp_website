@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon app.js",
     "start": "NODE_ENV=production node app.js",
-    "migrate": "knex migrate:latest --cwd ./migrations"
+    "migrate": "knex migrate:latest"
   },
   "engines": {
     "node": "7.6.0"
