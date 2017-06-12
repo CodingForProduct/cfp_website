@@ -1,4 +1,3 @@
-var authService = require('../config/auth');
 var User = require('./models/user');
 
 module.exports = function(app, passport) {
