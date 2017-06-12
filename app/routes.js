@@ -35,6 +35,24 @@ module.exports = function(app, passport) {
   app.get('/setPassword', isLoggedOut, function(request, response) {
     response.render('set_password', { message: request.flash('setPassword'), currentUser: null });
   });
+  app.post('/setPassword', isLoggedOut, function(request, response) {
+    if(request.body.password !== request.body.confirm_password) {
+      request.flash('setPassword', 'passwords do not match')
+      response.redirect('/setPassword');
+    }
+
+    User.setPassword(request.body.email, request.body.password)
+    .then((user) => {
+      if(user) {
+        request.flash('loginMessage', 'password set')
+      } else {
+        request.flash('loginMessage', 'password can not be reset')
+      }
+
+      res.redirect('/login');
+    })
+  });
+
   app.get('/login', isLoggedOut, function(request, response) {
     response.render('login', { message: request.flash('loginMessage'), currentUser: null });
   });

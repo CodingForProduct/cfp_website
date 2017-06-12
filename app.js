@@ -9,6 +9,8 @@ var flash = require('connect-flash');
 // express
 var app = express();
 
+require('./config/passport')(passport);
+
 // view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
