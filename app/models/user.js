@@ -29,9 +29,18 @@ function setPassword(email, password) {
   return user.update({ password: generateHash(password) })
 }
 
+function create(data) {
+  if(data.name && data.email && data.github_username && data.programming_experience && data.languages && data.location && data.goals) {
+    return db.from('users').insert(data);
+  } else {
+    return Promise.resolve(false);
+  }
+}
+
 module.exports = {
   findOne,
   findAll,
+  create,
   validPassword,
   setPassword,
 }

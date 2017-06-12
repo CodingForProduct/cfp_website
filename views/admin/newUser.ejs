@@ -1,0 +1,10 @@
+<%- include ../partials/header %>
+
+<h1>New User</h1>
+<form action="/admin/newUser" method="post">
+    <%- include newUserFields %>
+
+    <button type="submit" class="btn btn-warning btn-lg">Create User</button>
+</form>
+
+<%- include ../partials/footer %>

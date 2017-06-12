@@ -1,6 +1,27 @@
 var User = require('./models/user');
 
 module.exports = function(app, passport) {
+  app.get('/admin', isAdmin, (request, response) => {
+    response.render('admin', { currentUser: request.user });
+  })
+
+
+  app.get('/admin/newUser', isAdmin, (request, response) => {
+    response.render('admin/newUser', { currentUser: request.user });
+  })
+
+  app.post('/admin/newUser', (request, response) => {
+    User.create(request.body)
+      .then((res) => {
+        if(res) {
+          response.redirect('/users')
+        } else {
+          response.redirect('/admin/newUser');
+        }
+
+      })
+  })
+
   app.get('/', (request, response) => {
     response.render('home', { currentUser: request.user });
   });
@@ -63,6 +84,13 @@ module.exports = function(app, passport) {
     request.logout();
     response.redirect('/');
   });
+}
+
+function isAdmin(req, res, next) {
+  // if user is  admin, carry on
+  if (req.isAuthenticated() && req.user.admin) { return next(); }
+  // if they aren't redirect them
+  res.redirect('/');
 }
 
 function isLoggedIn(req, res, next) {
