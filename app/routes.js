@@ -64,6 +64,12 @@ module.exports = function(app, passport) {
     successRedirect: '/users'
   }));
 
+  app.get('/logout', isLoggedIn, function(request, response) {
+    request.logout();
+    response.redirect('/');
+  });
+}
+
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated()) { return next(); }
