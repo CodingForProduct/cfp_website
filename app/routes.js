@@ -1,8 +1,7 @@
-var db = require('../config/database');
 var authService = require('../config/auth');
 var markdownService = require('./markdownService');
+var User = require('./models/user');
 
-module.exports = function(app) {
 module.exports = function(app, passport) {
   app.get('/', (request, response) => {
     const file = markdownService.readFile('/views/markdown/home.md');
@@ -19,25 +18,33 @@ module.exports = function(app, passport) {
     response.send(markdownService.renderMarkdownFile(file));
   });
 
-  app.get('/users', authService.auth.connect(authService.basic), (request, response) => {
-    db.select().from('users')
-    .then(res => {
-      response.render('users', { users: res });
+  app.get('/users', isLoggedIn, (request, response) => {
+    User.findAll()
+    .then(users => {
+      response.render('users', { users, currentUser: request.user });
     })
   });
 
-  app.get('/users/:id', authService.auth.connect(authService.basic), (request, response) => {
-    db.select().from('users').where('id', request.params.id)
-    .then(res => {
-      response.render('user', { user: res[0] });
+  app.get('/users/:id', isLoggedIn, (request, response) => {
+    User.findOne('id', request.params.id)
+    .then(user => {
+      response.render('user', { user, currentUser: request.user });
     })
   });
+
   app.get('/setPassword', isLoggedOut, function(request, response) {
     response.render('set_password', { message: request.flash('setPassword'), currentUser: null });
   });
   app.get('/login', isLoggedOut, function(request, response) {
     response.render('login', { message: request.flash('loginMessage'), currentUser: null });
   });
+function isLoggedIn(req, res, next) {
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated()) { return next(); }
+  // if they aren't redirect them
+  res.redirect('/login');
+}
+
 function isLoggedOut(req, res, next) {
   // if user is not  authenticated in the session, carry on
   if (!req.isAuthenticated()) { return next(); }
