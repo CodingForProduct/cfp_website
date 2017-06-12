@@ -1,21 +1,17 @@
 var authService = require('../config/auth');
-var markdownService = require('./markdownService');
 var User = require('./models/user');
 
 module.exports = function(app, passport) {
   app.get('/', (request, response) => {
-    const file = markdownService.readFile('/views/markdown/home.md');
-    response.send(markdownService.renderMarkdownFile(file));
+    response.render('home', { currentUser: request.user });
   });
 
   app.get('/coding_exercise', (request, response) => {
-    const file = markdownService.readFile('/views/markdown/coding_exercise.md');
-    response.send(markdownService.renderMarkdownFile(file));
+    response.render('coding_exercise', { currentUser: request.user });
   });
 
   app.get('/workshop_summary', (request, response) => {
-    const file = markdownService.readFile('/views/markdown/workshop_summary.md');
-    response.send(markdownService.renderMarkdownFile(file));
+    response.render('workshop_summary', { currentUser: request.user });
   });
 
   app.get('/users', isLoggedIn, (request, response) => {

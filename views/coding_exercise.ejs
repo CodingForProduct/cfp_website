@@ -1,0 +1,78 @@
+<% include partials/header %>
+
+<h1 id="coding-exercise">Coding exercise</h1>
+
+<p>As part of the application process, you must complete this coding exercise. You
+should do the exercises in the language you intend to use for the group project.</p>
+<p>This coding exercise will cover:</p>
+
+<ul>
+<li>functions (AKA methods)</li>
+<li>arrays</li>
+<li>key value pairs (AKA object, dictionary, hash)</li>
+<li>manipulating strings</li>
+<li>conditionals</li>
+<li>looping over a collection</li>
+</ul>
+
+<p>To submit the exercise, you can either:</p>
+<ol>
+<li><p>complete the exercise, upload it to your github account, and email Wai-Yin the link.</p>
+</li>
+<li><p>complete the exercise, and email Wai-Yin the file.</p>
+</li>
+</ol>
+
+<h2 id="exercise-1">Exercise 1</h2>
+
+<p>Write a function that when given an key value pair
+with a title and url, the function will print a linked title.</p>
+<ul>
+<li>If the title is longer than 50 characters, truncate the title to 50 characters followed by 3 ellipses.</li>
+<li>To &quot;print&quot; use the print/console method from your programming language.</li>
+</ul>
+
+<p>Input:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// this is a javascript object. Your input will differ depending on the language you use.</span>
+
+{
+  <span class="hljs-attribute">title</span>: <span class="hljs-string">'really, really, really long title that will be chopped off'</span>,
+  <span class="hljs-attribute">link</span>: <span class="hljs-string">'example.com'</span>
+}
+</code></pre>
+
+<p>Output:</p>
+<pre><code class="lang-html">&lt;<span class="hljs-keyword">a</span> href=<span class="hljs-string">"example.com"</span>&gt;really, really, really <span class="hljs-keyword">long</span> title that will be cho…&lt;/<span class="hljs-keyword">a</span>&gt;
+</code></pre>
+
+<h2 id="exercise-2">Exercise 2</h2>
+
+<p>Write a function when given an array of key value pairs, the function will print out a linked title for key value pair. Call the function from previous question in this function.</p>
+
+<p>Input:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// this is a javascript array of objects. Your input will differ depending on the language you use.</span>
+
+[
+  {
+    <span class="hljs-keyword">title</span>: <span class="hljs-string">'Github'</span>,
+    link: <span class="hljs-string">'github.com'</span>
+  },
+  {
+    <span class="hljs-keyword">title</span>: <span class="hljs-string">'Google'</span>,
+    link: <span class="hljs-string">'google.com'</span>
+  },
+  {
+    <span class="hljs-keyword">title</span>: <span class="hljs-string">'really, really, really long title that will be chopped off'</span>,
+    link: <span class="hljs-string">'example.com'</span>
+  }
+]
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="lang-html">&lt;<span class="hljs-keyword">a</span> href=<span class="hljs-string">"github.com"</span>&gt;Github&lt;/<span class="hljs-keyword">a</span>&gt;
+&lt;<span class="hljs-keyword">a</span> href=<span class="hljs-string">"google.com"</span>&gt;Google&lt;/<span class="hljs-keyword">a</span>&gt;
+&lt;<span class="hljs-keyword">a</span> href=<span class="hljs-string">"example.com"</span>&gt;really, really, really <span class="hljs-keyword">long</span> title <span class="hljs-number">3</span> that will be ch…&lt;/<span class="hljs-keyword">a</span>&gt;
+</code></pre>
+
+<% include partials/footer %>
