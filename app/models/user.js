@@ -2,12 +2,17 @@ var bcrypt   = require('bcrypt-nodejs');
 
 var db = require('../../config/database');
 
-function findOne(field, value) {
+function findOneWithPassword(field, value) {
   return  db.first().from('users').where(field, value);
 }
 
+function findOne(field, value) {
+  return db.first('name', 'github_username', 'programming_experience', 'languages', 'location', 'goals')
+    .from('users').where(field, value);
+}
+
 function findAll() {
-  return db.select().from('users');
+  return db.select('name', 'id').from('users');
 }
 
 function generateHash(password) {
@@ -43,4 +48,5 @@ module.exports = {
   create,
   validPassword,
   setPassword,
+  findOneWithPassword,
 }

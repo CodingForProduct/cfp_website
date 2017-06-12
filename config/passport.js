@@ -36,7 +36,7 @@ module.exports = function(passport) {
     console.log('inside:', email, password)
     if (email) { email = email.toLowerCase(); }
 
-    User.findOne('email', email)
+    User.findOneWithPassword('email', email)
       .then((user) => {
         if (!user) {
           return done(null, false, req.flash('loginMessage', 'login did not work'));
