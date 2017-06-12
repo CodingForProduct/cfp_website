@@ -1,0 +1,18 @@
+<% include partials/header %>
+
+<h1>Teams</h1>
+
+<ol>
+ <% Object.keys(assignments).forEach(function(team) { %>
+  <li>
+    <%= team %>
+    <ol>
+      <% assignments[team].forEach(function(user) { %>
+        <li><a href='/users/<%= user.user_id %>' ><%= user.user_name %></a></li>
+      <% }) %>
+    </ol>
+  </li>
+<% }) %>
+</ol>
+
+<% include partials/footer %>

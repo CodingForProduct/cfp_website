@@ -1,4 +1,6 @@
 var User = require('./models/user');
+var Team = require('./models/team');
+var _ = require('lodash');
 
 module.exports = function(app, passport) {
   app.get('/admin', isAdmin, (request, response) => {
@@ -47,6 +49,18 @@ module.exports = function(app, passport) {
       response.render('user', { user, currentUser: request.user });
     })
   });
+
+  app.get('/teams', (request, response) => {
+    Team.assignments()
+    .then(results => {
+      const rows = results.rows;
+      const assignments = _.groupBy(rows, 'team_name')
+            console.log(assignments)
+
+      response.render('teams', { assignments, currentUser: request.user })
+    })
+  })
+
 
   app.get('/setPassword', isLoggedOut, function(request, response) {
     response.render('set_password', { message: request.flash('setPassword'), currentUser: null });
