@@ -14,6 +14,11 @@ function generateHash(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+function validPassword(text, hashPassword) {
+  if(!hashPassword) { return false; }
+  return bcrypt.compareSync(text, hashPassword);
+};
+
 function setPassword(email, password) {
   const user =  db.first().from('users')
     .where('email', email)
@@ -27,5 +32,6 @@ function setPassword(email, password) {
 module.exports = {
   findOne,
   findAll,
+  validPassword,
   setPassword,
 }

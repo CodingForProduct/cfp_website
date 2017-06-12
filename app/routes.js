@@ -35,6 +35,8 @@ module.exports = function(app, passport) {
   app.get('/setPassword', isLoggedOut, function(request, response) {
     response.render('set_password', { message: request.flash('setPassword'), currentUser: null });
   });
+
+
   app.post('/setPassword', isLoggedOut, function(request, response) {
     if(request.body.password !== request.body.confirm_password) {
       request.flash('setPassword', 'passwords do not match')
@@ -56,6 +58,12 @@ module.exports = function(app, passport) {
   app.get('/login', isLoggedOut, function(request, response) {
     response.render('login', { message: request.flash('loginMessage'), currentUser: null });
   });
+
+  app.post('/login',isLoggedOut, passport.authenticate('local-login', {
+    failureRedirect: '/login',
+    successRedirect: '/users'
+  }));
+
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated()) { return next(); }
