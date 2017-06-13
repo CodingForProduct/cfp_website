@@ -25,13 +25,19 @@ function validPassword(text, hashPassword) {
 };
 
 function setPassword(email, password) {
-  const user =  db.first().from('users')
+  const user = db.first().from('users')
     .where('email', email)
     .whereNull('password');
 
-  if(!user) { return };
+    return user
+    .then(res => {
+      if (res) {
+        return user.update({ password: generateHash(password) });
+      } else {
+        return;
+      }
+    });
 
-  return user.update({ password: generateHash(password) })
 }
 
 function create(data) {

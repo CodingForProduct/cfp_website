@@ -81,7 +81,7 @@ module.exports = function(app, passport) {
         request.flash('loginMessage', 'password can not be reset')
       }
 
-      res.redirect('/login');
+      response.redirect('/login');
     })
   });
 
