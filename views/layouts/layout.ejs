@@ -27,9 +27,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+
             <% if (currentUser) { %>
             <li><a href="/users">Participants</a></li>
             <li><a href="/teams">Teams</a></li>
+            <% } %>
+            <% if (currentUser.admin) { %>
+            <li><a href="/admin">Admin</a></li>
             <% } %>
             <% if (currentUser) { %>
               <li><a href="/logout">logout</a></li>
@@ -42,3 +46,8 @@
     </nav>
 
     <div class="container">
+      <%- body %>
+    </div>
+  </body>
+</html>
+

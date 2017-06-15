@@ -4,12 +4,17 @@ var _ = require('lodash');
 
 module.exports = function(app, passport) {
   app.get('/admin', isAdmin, (request, response) => {
-    response.render('admin', { currentUser: request.user });
+    response.render('admin',
+      { currentUser: request.user,
+        layout: 'layouts/admin_layout'
+      });
   })
 
-
   app.get('/admin/newUser', isAdmin, (request, response) => {
-    response.render('admin/newUser', { currentUser: request.user });
+    response.render('admin/newUser',
+      { currentUser: request.user ,
+        layout: 'layouts/admin_layout'
+      });
   })
 
   app.post('/admin/newUser', (request, response) => {

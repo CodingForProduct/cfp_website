@@ -6,16 +6,21 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 var KnexSessionStore = require('connect-session-knex')(session);
+var expressLayouts = require('express-ejs-layouts');
+
 var db = require('./config/database');
+require('./config/passport')(passport);
 
 // express
 var app = express();
 
-require('./config/passport')(passport);
-
 // view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// add layout support
+app.use(expressLayouts);
+app.set('layout', 'layouts/layout');
 
 // read cookies (needed for auth)
 app.use(cookieParser());
@@ -27,19 +32,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // set the folder for  static assets
 app.use(express.static(path.join(__dirname, 'public')));
 
-// store session in database
+// store session in database (needed for auth)
 var store = new KnexSessionStore({
     knex: db,
-    tablename: 'sessions' // optional. Defaults to 'sessions'
+    tablename: 'sessions'
 });
 
-// required for passport
+// required for passport (needed for auth)
 app.use(session({
   secret: process.env.SESSION_SECRET,
   store: store
 }));
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// persistent login sessions
+app.use(passport.session());
 
 // use connect-flash for flash messages stored in session
 app.use(flash());
@@ -47,6 +53,7 @@ app.use(flash());
 // routes
 require('./app/routes')(app, passport);
 
+// start server
 app.listen(process.env.PORT, () => {
   console.log('server started on port ' + process.env.PORT);
 });

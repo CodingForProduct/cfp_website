@@ -212,6 +212,11 @@
       "from": "express@latest",
       "resolved": "https://registry.npmjs.org/express/-/express-4.15.3.tgz"
     },
+    "express-ejs-layouts": {
+      "version": "2.3.0",
+      "from": "express-ejs-layouts@latest",
+      "resolved": "https://registry.npmjs.org/express-ejs-layouts/-/express-ejs-layouts-2.3.0.tgz"
+    },
     "express-session": {
       "version": "1.15.3",
       "from": "express-session@latest",
