@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
+var KnexSessionStore = require('connect-session-knex')(session);
+var db = require('./config/database');
 
 // express
 var app = express();
@@ -25,8 +27,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // set the folder for  static assets
 app.use(express.static(path.join(__dirname, 'public')));
 
+// store session in database
+var store = new KnexSessionStore({
+    knex: db,
+    tablename: 'sessions' // optional. Defaults to 'sessions'
+});
+
 // required for passport
-app.use(session({ secret: process.env.SESSION_SECRET })); // session secret
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  store: store
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
