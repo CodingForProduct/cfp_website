@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
   });
 
   app.get('/users/:id', isLoggedIn, (request, response) => {
-    User.findOne('id', request.params.id)
+    User.findOne(request.params.id)
     .then(user => {
       response.render('user', { user, currentUser: request.user });
     })

@@ -1,0 +1,7 @@
+<h1>Edit User</h1>
+
+<form action="/admin/users/<%= user.id %>/edit" method="post">
+    <%- include userFields %>
+
+    <button type="submit" class="btn btn-warning btn-lg">Edit User</button>
+</form>

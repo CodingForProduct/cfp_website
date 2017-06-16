@@ -1,0 +1,24 @@
+<h1>Users</h1>
+
+<a class="btn btn-primary" href="/admin/users/new">Add User</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+    <tr>
+      <td><%= user.name %></td>
+      <td>
+        <a href="/admin/users/<%= user.id %>/edit" class="btn btn-primary btn-sm">Edit</a>
+        <form style="display:inline" action="/admin/users/<%= user.id %>/delete" method="post">
+          <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

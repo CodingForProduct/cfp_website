@@ -3,8 +3,8 @@
 <% if (message.length > 0) { %>
 <div class="alert alert-danger"><%-  message.join('  <br>') %></div>
 <% } %>
-<form action="/admin/newUser" method="post">
-    <%- include newUserFields %>
+<form action="/admin/users" method="post">
+    <%- include userFields %>
 
     <button type="submit" class="btn btn-warning btn-lg">Create User</button>
 </form>

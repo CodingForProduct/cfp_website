@@ -1,0 +1,66 @@
+<div class="form-group">
+  <label>Name</label>
+  <input type="text" class="form-control" name="name" value="<%= user.name %>">
+</div>
+
+<div class="form-group">
+  <label>Email</label>
+  <input type="text" class="form-control" name="email" value="<%= user.email %>">
+</div>
+
+<div class="form-group">
+  <label>Github</label>
+  <input type="text" class="form-control" name="github_username" value="<%= user.github_username %>">
+</div>
+
+<div class="form-group">
+  <label>Programming experience</label>
+  <textarea class="form-control" name="programming_experience"><%= user.programming_experience %></textarea>
+</div>
+
+<div class="form-group">
+  <label>languages</label>
+  <input type="text" class="form-control" name="languages" value="<%= user.languages %>">
+</div>
+
+<div class="form-group">
+  <label>location</label>
+  <input type="text" class="form-control" name="location" value="<%= user.location %>">
+</div>
+
+<div class="form-group">
+  <label>goals</label>
+  <textarea class="form-control" name="goals"><%= user.goals %></textarea>
+</div>
+
+<div class="form-group">
+  <label>sign up date</label>
+  <input type="text" class="form-control" name="created_at" value="<%= user.created_at %>">
+</div>
+
+<div class="form-group">
+  <label>admin</label>
+  <input name="admin" type="checkbox" value="true" <% if(user.admin){ %>checked<% } %>>
+</div>
+
+<div class="form-group">
+  <label>mentor</label>
+  <input name="mentor" type="checkbox" value="true" <% if(user.mentor){ %>checked<% } %>>
+</div>
+
+<div class="form-group">
+  <label>pending</label>
+  <input name="pending" type="checkbox" value="true" <% if(user.pending){ %>checked<% } %>>
+</div>
+
+<div class="form-group">
+  <label>Team</label>
+  <select name="team_id">
+    <option value="">Select team</option>
+    <% teams.forEach(function(team) { %>
+      <option value="<%= team.id %>" <% if(team.id === user.team_id){ %>selected<% } %>><%= team.name %></option>
+    <% }) %>
+  </select>
+</div>
+
+

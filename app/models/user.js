@@ -1,14 +1,17 @@
 var bcrypt   = require('bcrypt-nodejs');
 
 var db = require('../../config/database');
+var cleaners = require('../services/dataCleaners');
 
 function findOneWithPassword(field, value) {
   return  db.first().from('users').where(field, value);
 }
 
-function findOne(field, value) {
+function findOne(id) {
   const fields = [
+    'id',
     'name',
+    'email',
     'github_username',
     'programming_experience',
     'languages',
@@ -16,14 +19,16 @@ function findOne(field, value) {
     'goals',
     'admin',
     'mentor',
-    'pending'
+    'pending',
+    'created_at',
+    'team_id'
   ]
   return db.first(fields)
-    .from('users').where(field, value);
+    .from('users').where('id', id);
 }
 
 function findAll() {
-  return db.select('name', 'id').from('users');
+  return db.select('name', 'id').from('users').orderBy('name');
 }
 
 function generateHash(password) {
@@ -48,35 +53,55 @@ function setPassword(email, password) {
         return;
       }
     });
-
 }
 
-function convertStringToBoolean(text) {
-  return text === 'true';
-}
-
-function validDate(dateString) {
-  // https://stackoverflow.com/questions/1353684/detecting-an-invalid-date-date-instance-in-javascript
-  var tempDate =  new Date(dateString);
-  return !isNaN(tempDate.getTime())
-}
 
 function create(data) {
+  data = cleaners.trimPayload(data);
+
   ['admin', 'mentor', 'pending'].forEach( function(field) {
-    data[field] = convertStringToBoolean(data[field]);
+    data[field] = cleaners.convertStringToBoolean(data[field]);
   })
 
-  if(!validDate(data.created_at)) {
+  if(!cleaners.validDate(data.created_at)) {
       data.created_at  = null;
   }
 
   return db.from('users').insert(data);
 }
 
+function update(id, data) {
+  data = cleaners.trimPayload(data);
+
+  return db.from('users')
+  .update({
+    name: data.name,
+    email: data.email,
+    github_username: data.github_username,
+    programming_experience: data.programming_experience,
+    languages: data.languages,
+    location: data.location,
+    goals: data.goals,
+    admin: cleaners.convertStringToBoolean(data.admin),
+    pending: cleaners.convertStringToBoolean(data.pending),
+    mentor: cleaners.convertStringToBoolean(data.mentor),
+    team_id: data.team_id,
+  })
+  .where('id', id)
+}
+
+function deleteOne(id) {
+  return db.from('users')
+  .delete()
+  .where('id', id)
+}
+
 module.exports = {
   findOne,
   findAll,
   create,
+  update,
+  deleteOne,
   validPassword,
   setPassword,
   findOneWithPassword,
