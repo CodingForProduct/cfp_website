@@ -9,6 +9,11 @@ function assignments() {
   return db.raw(sql);
 }
 
+function findAll() {
+  return db.select('name', 'id').from('teams').orderBy('name');
+}
+
 module.exports = {
   assignments,
+  findAll
 }

@@ -11,23 +11,37 @@ module.exports = function(app, passport) {
   })
 
   app.get('/admin/newUser', isAdmin, (request, response) => {
-    response.render('admin/newUser',
-      { currentUser: request.user ,
-        layout: 'layouts/admin_layout'
-      });
+    Team.findAll()
+      .then((teams) => {
+        response.render('admin/newUser',
+          { currentUser: request.user ,
+            layout: 'layouts/admin_layout',
+            message: [],
+            teams
+          }
+        );
+      })
   })
 
   app.post('/admin/newUser', (request, response) => {
+    console.log('new user', request.body)
     User.create(request.body)
       .then((res) => {
-        if(res) {
-          response.redirect('/users')
-        } else {
-          response.redirect('/admin/newUser');
-        }
-
+        response.redirect('/users')
       })
-  })
+      .catch(err => {
+        Team.findAll()
+          .then((teams) => {
+            response.render('admin/newUser',
+              { currentUser: request.user ,
+                layout: 'layouts/admin_layout',
+                message: err,
+                teams
+              }
+            );
+          })
+      });
+  });
 
   app.get('/', (request, response) => {
     response.render('home', { currentUser: request.user });

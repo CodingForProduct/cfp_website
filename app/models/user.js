@@ -7,7 +7,18 @@ function findOneWithPassword(field, value) {
 }
 
 function findOne(field, value) {
-  return db.first('name', 'github_username', 'programming_experience', 'languages', 'location', 'goals')
+  const fields = [
+    'name',
+    'github_username',
+    'programming_experience',
+    'languages',
+    'location',
+    'goals',
+    'admin',
+    'mentor',
+    'pending'
+  ]
+  return db.first(fields)
     .from('users').where(field, value);
 }
 
@@ -40,11 +51,29 @@ function setPassword(email, password) {
 
 }
 
+function convertStringToBoolean(text) {
+  return text === 'true';
+}
+
+function validDate(dateString) {
+  // https://stackoverflow.com/questions/1353684/detecting-an-invalid-date-date-instance-in-javascript
+  var tempDate =  new Date(dateString);
+  return !isNaN(tempDate.getTime())
+}
+
 function create(data) {
   if(data.name && data.email && data.github_username && data.programming_experience && data.languages && data.location && data.goals) {
+    ['admin', 'mentor', 'pending'].forEach( function(field) {
+      data[field] = convertStringToBoolean(data[field]);
+    })
+
+    if(!validDate(data.created_at)) {
+       data.created_at  = null;
+    }
+
     return db.from('users').insert(data);
   } else {
-    return Promise.resolve(false);
+    return Promise.reject(['required fields not filled out']);
   }
 }
 

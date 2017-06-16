@@ -1,34 +1,66 @@
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" class="form-control" name="name">
-    </div>
+<div class="form-group">
+  <label>Name</label>
+  <input type="text" class="form-control" name="name">
+</div>
 
-    <div class="form-group">
-      <label>Email</label>
-      <input type="text" class="form-control" name="email">
-    </div>
+<div class="form-group">
+  <label>Email</label>
+  <input type="text" class="form-control" name="email">
+</div>
 
-    <div class="form-group">
-      <label>Github</label>
-      <input type="text" class="form-control" name="github_username">
-    </div>
+<div class="form-group">
+  <label>Github</label>
+  <input type="text" class="form-control" name="github_username">
+</div>
 
-    <div class="form-group">
-      <label>Programming experience</label>
-      <textarea class="form-control" name="programming_experience"></textarea>
-    </div>
+<div class="form-group">
+  <label>Programming experience</label>
+  <textarea class="form-control" name="programming_experience"></textarea>
+</div>
 
-    <div class="form-group">
-      <label>languages</label>
-      <input type="text" class="form-control" name="languages">
-    </div>
+<div class="form-group">
+  <label>languages</label>
+  <input type="text" class="form-control" name="languages">
+</div>
 
-    <div class="form-group">
-      <label>location</label>
-      <input type="text" class="form-control" name="location">
-    </div>
+<div class="form-group">
+  <label>location</label>
+  <input type="text" class="form-control" name="location">
+</div>
 
-    <div class="form-group">
-      <label>goals</label>
-      <textarea class="form-control" name="goals"></textarea>
-    </div>
+<div class="form-group">
+  <label>goals</label>
+  <textarea class="form-control" name="goals"></textarea>
+</div>
+
+<div class="form-group">
+  <label>sign up date</label>
+  <input type="text" class="form-control" name="created_at">
+</div>
+
+<div class="form-group">
+  <label>admin</label>
+  <input name="admin" type="checkbox" value="true">
+</div>
+
+<div class="form-group">
+  <label>mentor</label>
+  <input name="mentor" type="checkbox" value="true">
+</div>
+
+<div class="form-group">
+  <label>pending</label>
+  <input name="pending" type="checkbox" value="true">
+</div>
+
+<div class="form-group">
+  <label>Team</label>
+  <select name="team_id">
+    <option value="" selected>Select team</option>
+    <% teams.forEach(function(team) { %>
+      <option value="<%= team.id %>"><%= team.name %></option>
+    <% }) %>
+  </select>
+</div>
+
+

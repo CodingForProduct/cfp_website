@@ -32,7 +32,7 @@
             <li><a href="/users">Participants</a></li>
             <li><a href="/teams">Teams</a></li>
             <% } %>
-            <% if (currentUser.admin) { %>
+            <% if (currentUser && currentUser.admin) { %>
             <li><a href="/admin">Admin</a></li>
             <% } %>
             <% if (currentUser) { %>
