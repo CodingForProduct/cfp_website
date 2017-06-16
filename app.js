@@ -56,6 +56,7 @@ app.use(flash());
 
 // routes
 require('./app/routes')(app, passport);
+require('./app/routes_admin')(app, passport);
 
 // start server
 app.listen(process.env.PORT, () => {
