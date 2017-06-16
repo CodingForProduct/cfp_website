@@ -8,7 +8,7 @@
   <select name="programming_experience">
     <option value="">Select programming experience</option>
     <% for (var key in programming_experiences) { %>
-      <option value="<%= key %>" <% if(team.programming_experience === key){ %>selected<% } %>><%= programming_experiences[key] %></option>
+      <option value="<%= key %>" <% if(team.programming_experience == key){ %>selected<% } %>><%= programming_experiences[key] %></option>
     <% } %>
   </select>
 </div>
@@ -18,7 +18,7 @@
   <select name="languages">
     <option value="">Select language</option>
     <% languages.forEach(language => { %>
-      <option value="<%= language%>" <% if(team.languages === language){ %>selected<% } %>><%= language %></option>
+      <option value="<%= language%>" <% if(team.languages == language){ %>selected<% } %>><%= language %></option>
     <% }) %>
   </select>
 </div>

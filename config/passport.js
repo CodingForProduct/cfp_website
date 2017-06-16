@@ -13,8 +13,7 @@ module.exports = function(passport) {
   // serializing, and querying the user record by ID from the database when
   // deserializing.
   passport.serializeUser(function(user, done) {
-    console.log('serializeUser:', user)
-      done(null, user.id);
+    done(null, user.id);
   });
 
   passport.deserializeUser(function(id, done) {
@@ -33,7 +32,6 @@ module.exports = function(passport) {
      passReqToCallback : true
   },
   function(req, email, password, done) {
-    console.log('inside:', email, password)
     if (email) { email = email.toLowerCase(); }
 
     User.findOneWithPassword('email', email)

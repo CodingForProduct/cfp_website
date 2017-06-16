@@ -1,9 +1,7 @@
 <div class="col-sm-6 col-sm-offset-3">
   <h1>Login</h1>
 
-  <% if (alerts.length > 0) { %>
-    <div class="alert alert-danger"><%= message %></div>
-  <% } %>
+  <%- include ./partials/alerts %>
 
   <form action="/login" method="post">
     <div class="form-group">

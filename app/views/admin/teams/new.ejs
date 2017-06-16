@@ -1,8 +1,7 @@
 <h1>New Team</h1>
 
-<% if (alerts.length > 0) { %>
-<div class="alert alert-danger"><%-  alerts.join('  <br>') %></div>
-<% } %>
+<%- include ../../partials/alerts %>
+
 <form action="/admin/teams" method="post">
     <%- include teamFields %>
 

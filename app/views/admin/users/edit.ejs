@@ -1,5 +1,7 @@
 <h1>Edit User</h1>
 
+<%- include ../../partials/alerts %>
+
 <form action="/admin/users/<%= user.id %>/edit" method="post">
     <%- include userFields %>
 

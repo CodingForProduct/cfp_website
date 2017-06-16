@@ -34,17 +34,14 @@ module.exports = function(app, passport) {
     .then(results => {
       const rows = results.rows;
       const assignments = _.groupBy(rows, 'team_name')
-            console.log(assignments)
 
       response.render('teams', { assignments, currentUser: request.user })
     })
   })
 
-
   app.get('/setPassword', isLoggedOut, function(request, response) {
-    response.render('set_password', { message: request.flash('setPassword'), currentUser: null });
+    response.render('set_password', { alerts: request.flash('setPassword'), currentUser: null });
   });
-
 
   app.post('/setPassword', isLoggedOut, function(request, response) {
     if(request.body.password !== request.body.confirm_password) {
@@ -65,7 +62,7 @@ module.exports = function(app, passport) {
   });
 
   app.get('/login', isLoggedOut, function(request, response) {
-    response.render('login', { message: request.flash('loginMessage'), currentUser: null });
+    response.render('login', { alerts: request.flash('loginMessage'), currentUser: null });
   });
 
   app.post('/login', isLoggedOut, passport.authenticate('local-login', {

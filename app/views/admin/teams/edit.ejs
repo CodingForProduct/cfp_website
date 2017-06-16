@@ -1,5 +1,7 @@
 <h1>Edit Team</h1>
 
+<%- include ../../partials/alerts %>
+
 <form action="/admin/teams/<%= team.id %>/edit" method="post">
     <%- include teamFields %>
     <button type="submit" class="btn btn-warning btn-lg">Edit Team</button>

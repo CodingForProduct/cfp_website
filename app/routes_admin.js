@@ -2,12 +2,12 @@ var User = require('./models/user');
 var Team = require('./models/team');
 var _ = require('lodash');
 
-
-const languages = ['java', 'javascript', 'python', 'ruby'];
-const programming_experiences = {
-  1: 'beginner',
-  2: 'limited projects',
-  3: 'multiple projects'
+function tempResource(payload) {
+  var fields = Object.keys(payload);
+  var resource = {};
+  fields.forEach(field => resource[field] = payload[field]);
+  console.log(resource)
+  return resource;
 }
 
 module.exports = function(app, passport) {
@@ -22,11 +22,11 @@ module.exports = function(app, passport) {
       response.render('admin/users', {
         currentUser: request.user ,
         layout: 'layouts/admin_layout',
-        message: [],
+        alerts: request.flash('users'),
         users
       })
-      .catch(err => console.log('User.findAll err:', err));
     })
+    .catch(err => console.log('User.findAll err:', err));
   })
 
   // form for new user
@@ -36,13 +36,14 @@ module.exports = function(app, passport) {
       response.render('admin/users/new', {
         currentUser: request.user ,
         layout: 'layouts/admin_layout',
-        message: [],
+        alerts: [],
         teams,
         user: {},
       })
-      .catch(err => console.log('Team.findAll err:', err));
     })
+    .catch(err => console.log('Team.findAll err:', err));
   })
+
 
   // create new user
   app.post('/admin/users', isAdmin, (request, response) => {
@@ -61,16 +62,17 @@ module.exports = function(app, passport) {
         response.render('admin/users/new', {
           currentUser: request.user ,
           layout: 'layouts/admin_layout',
+          alerts: errors.map(error => error.msg),
           teams,
-          user: {},
-          message: errors.map(error => error.msg),
+          user: tempResource(request.body),
         })
-        .catch(err => console.log('Team.finddAll err:', err));
       })
+      .catch(err => console.log('Team.finddAll err:', err));
     } else {
       User.create(request.body)
       .then((res) => {
-        response.redirect('/admin/users')
+        request.flash('users', 'user created');
+        response.redirect('/admin/users');
       })
       .catch(err => console.log('User.create err:', errr))
     }
@@ -85,7 +87,7 @@ module.exports = function(app, passport) {
         response.render('admin/users/edit', {
           currentUser: request.user,
           layout: 'layouts/admin_layout',
-          message: [],
+          alerts: [],
           user,
           teams,
         })
@@ -103,7 +105,7 @@ module.exports = function(app, passport) {
         response.render('admin/users', {
           currentUser: request.user,
           layout: 'layouts/admin_layout',
-          message: 'User is updated',
+          alerts: ['User is updated'],
           users
         })
       })
@@ -122,11 +124,11 @@ app.post('/admin/users/:id/delete', (request, response) => {
       response.render('admin/users', {
         currentUser: request.user ,
         layout: 'layouts/admin_layout',
-        message: [],
+        alerts: ['User deleted'],
         users
       })
-      .catch(err => console.log('User.findAll err:', err));
     })
+    .catch(err => console.log('User.findAll err:', err));
   })
   .catch(err => console.log('Team.deleteOne err:', err))
 })
@@ -139,7 +141,7 @@ app.post('/admin/users/:id/delete', (request, response) => {
       response.render('admin/teams', {
         currentUser: request.user ,
         layout: 'layouts/admin_layout',
-        message: [],
+        alerts: [],
         teams
       })
     })
@@ -151,10 +153,10 @@ app.post('/admin/users/:id/delete', (request, response) => {
     response.render('admin/teams/new', {
       currentUser: request.user ,
       layout: 'layouts/admin_layout',
+      alerts: [],
       languages: Team.languages,
       programming_experiences: Team.programming_experiences,
       team: {},
-      message: [],
     });
   })
 
@@ -169,10 +171,10 @@ app.post('/admin/users/:id/delete', (request, response) => {
       response.render('admin/teams/new', {
         currentUser: request.user ,
         layout: 'layouts/admin_layout',
+        alerts: errors.map(error => error.msg),
         languages: Team.languages,
         programming_experiences: Team.programming_experiences,
-        team: {},
-        message: errors.map(error => error.msg),
+        team: tempResource(request.body),
       });
     } else {
       Team.create(request.body)
@@ -190,7 +192,7 @@ app.post('/admin/users/:id/delete', (request, response) => {
         response.render('admin/teams/edit', {
           currentUser: request.user,
           layout: 'layouts/admin_layout',
-          message: [],
+          alerts: [],
           team,
           languages,
           programming_experiences,
@@ -208,7 +210,7 @@ app.post('/admin/users/:id/delete', (request, response) => {
         response.render('admin/teams', {
           currentUser: request.user,
           layout: 'layouts/admin_layout',
-          message: 'Team is updated',
+          alerts: 'Team is updated',
           teams
         })
       })
@@ -226,7 +228,7 @@ app.post('/admin/users/:id/delete', (request, response) => {
           response.render('admin/teams', {
             currentUser: request.user,
             layout: 'layouts/admin_layout',
-            message: 'Team is updated',
+            alerts: 'Team is updated',
             teams
           })
         })
