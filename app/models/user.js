@@ -62,19 +62,15 @@ function validDate(dateString) {
 }
 
 function create(data) {
-  if(data.name && data.email && data.github_username && data.programming_experience && data.languages && data.location && data.goals) {
-    ['admin', 'mentor', 'pending'].forEach( function(field) {
-      data[field] = convertStringToBoolean(data[field]);
-    })
+  ['admin', 'mentor', 'pending'].forEach( function(field) {
+    data[field] = convertStringToBoolean(data[field]);
+  })
 
-    if(!validDate(data.created_at)) {
-       data.created_at  = null;
-    }
-
-    return db.from('users').insert(data);
-  } else {
-    return Promise.reject(['required fields not filled out']);
+  if(!validDate(data.created_at)) {
+      data.created_at  = null;
   }
+
+  return db.from('users').insert(data);
 }
 
 module.exports = {

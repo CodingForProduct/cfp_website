@@ -7,6 +7,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var KnexSessionStore = require('connect-session-knex')(session);
 var expressLayouts = require('express-ejs-layouts');
+var validator = require('express-validator');
 
 var db = require('./config/database');
 require('./config/passport')(passport);
@@ -28,6 +29,9 @@ app.use(cookieParser());
  // get information from html forms
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// form validator
+app.use(validator());
 
 // set the folder for  static assets
 app.use(express.static(path.join(__dirname, 'public')));

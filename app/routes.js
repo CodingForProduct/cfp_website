@@ -12,35 +12,43 @@ module.exports = function(app, passport) {
 
   app.get('/admin/newUser', isAdmin, (request, response) => {
     Team.findAll()
+    .then((teams) => {
+      response.render('admin/newUser',
+        { currentUser: request.user ,
+          layout: 'layouts/admin_layout',
+          message: [],
+          teams
+        }
+      );
+    })
+  })
+
+  app.post('/admin/newUser', (request, response) => {
+    request.checkBody('email', 'email is required').notEmpty();
+    request.checkBody('email', 'Invalid email').isEmail();
+    request.checkBody('name', 'name is required').notEmpty();
+    request.checkBody('programming_experience', 'programming experience is required').notEmpty();
+    request.checkBody('languages', 'languages is required').notEmpty();
+    request.checkBody('github_username', 'github username is required').notEmpty();
+
+    var errors = request.validationErrors();
+    if (errors) {
+      Team.findAll()
       .then((teams) => {
         response.render('admin/newUser',
           { currentUser: request.user ,
             layout: 'layouts/admin_layout',
-            message: [],
+            message: errors.map(error => error.msg),
             teams
           }
         );
       })
-  })
-
-  app.post('/admin/newUser', (request, response) => {
-    console.log('new user', request.body)
-    User.create(request.body)
+    } else {
+      User.create(request.body)
       .then((res) => {
         response.redirect('/users')
       })
-      .catch(err => {
-        Team.findAll()
-          .then((teams) => {
-            response.render('admin/newUser',
-              { currentUser: request.user ,
-                layout: 'layouts/admin_layout',
-                message: err,
-                teams
-              }
-            );
-          })
-      });
+    }
   });
 
   app.get('/', (request, response) => {
