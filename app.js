@@ -17,7 +17,7 @@ var app = express();
 
 // view engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app', 'views'));
 
 // add layout support
 app.use(expressLayouts);
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(validator());
 
 // set the folder for  static assets
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'app', 'public')));
 
 // store session in database (needed for auth)
 var store = new KnexSessionStore({

@@ -36,9 +36,9 @@ module.exports = function(app, passport) {
       response.render('admin/users/new', {
         currentUser: request.user ,
         layout: 'layouts/admin_layout',
+        message: [],
         teams,
         user: {},
-        message: [],
       })
       .catch(err => console.log('Team.findAll err:', err));
     })
