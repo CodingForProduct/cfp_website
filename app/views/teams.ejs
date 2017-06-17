@@ -6,7 +6,10 @@
     <%= team %>
     <ol>
       <% assignments[team].forEach(function(user) { %>
-        <li><a href='/users/<%= user.user_id %>' ><%= user.user_name %></a></li>
+        <li>
+          <a href='/users/<%= user.user_id %>' ><%= user.user_name %></a>
+          <% if(user.pending) { %> (pending) <% } %>
+        </li>
       <% }) %>
     </ol>
   </li>
