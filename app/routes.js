@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
   app.get('/users', isLoggedIn, (request, response) => {
     User.findAll()
     .then(users => {
-      response.render('users', { users, currentUser: request.user });
+      response.render('users', { users: _.groupBy(users, 'mentor'), currentUser: request.user });
     })
   });
 

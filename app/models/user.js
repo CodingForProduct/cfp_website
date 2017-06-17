@@ -28,7 +28,11 @@ function findOne(id) {
 }
 
 function findAll() {
-  return db.select('name', 'id').from('users').orderBy('name');
+  return db.select('name', 'id', 'mentor').from('users').orderBy('name');
+}
+
+function findAllByType(bool) {
+  return db.select('name', 'id').from('users').where('mentor', bool).orderBy('name');
 }
 
 function generateHash(password) {
@@ -105,4 +109,5 @@ module.exports = {
   validPassword,
   setPassword,
   findOneWithPassword,
+  findAllByType,
 }
