@@ -29,7 +29,9 @@
             <li><a href="/admin/teams">Teams</a></li>
             <% } %>
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
+            <% if (currentUser) { %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -38,17 +40,16 @@
                 <li><a><%= currentUser.name %></a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/users/<%= currentUser.id %>">Profile</a></li>
-                <% if (currentUser && currentUser.admin) { %>
+                <% if (currentUser.admin) { %>
                 <li><a href="/">Home</a></li>
                 <% } %>
-                <% if (currentUser) { %>
                 <li role="separator" class="divider"></li>
-                  <li><a href="/logout">logout</a></li>
-                <% } else { %>
-                  <li><a href="/login">login</a></li>
-                <% } %>
+                 <li><a href="/logout">logout</a></li>
               </ul>
             </li>
+            <% } else { %>
+            <li><a href="/login">login</a></li>
+            <% } %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
