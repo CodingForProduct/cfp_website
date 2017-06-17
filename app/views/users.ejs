@@ -1,7 +1,7 @@
 <h1>Students</h1>
 
 <ul>
- <% users.false.forEach(function(user) { %>
+ <% users.false && users.false.forEach(function(user) { %>
   <li>
     <a href='/users/<%= user.id %>' ><%= user.name %></a>
   </li>
@@ -11,7 +11,7 @@
 <h1>Mentors</h1>
 
 <ul>
- <% users.true.forEach(function(user) { %>
+ <% users.true && users.true.forEach(function(user) { %>
   <li>
     <a href='/users/<%= user.id %>' ><%= user.name %></a>
   </li>
