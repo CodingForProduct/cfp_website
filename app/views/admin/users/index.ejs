@@ -16,7 +16,7 @@
       <td><%= user.name %></td>
       <td>
         <a href="/admin/users/<%= user.id %>/edit" class="btn btn-primary btn-sm">Edit</a>
-        <form style="display:inline" action="/admin/users/<%= user.id %>/delete" method="post">
+        <form class="inline" action="/admin/users/<%= user.id %>/delete" method="post">
           <button type="submit" class="btn btn-primary btn-sm">Delete</button>
         </form>
       </td>

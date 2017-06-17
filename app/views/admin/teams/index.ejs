@@ -16,7 +16,7 @@
       <td><%= team.name %></td>
       <td>
         <a href="/admin/teams/<%= team.id %>/edit" class="btn btn-primary btn-sm">Edit</a>
-        <form style="display:inline" action="/admin/teams/<%= team.id %>/delete" method="post">
+        <form class="inline" action="/admin/teams/<%= team.id %>/delete" method="post">
           <button type="submit" class="btn btn-primary btn-sm">Delete</button>
         </form>
       </td>
