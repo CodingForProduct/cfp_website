@@ -20,6 +20,9 @@
 
   <dt>Goals</dt>
   <dd class="prewrap"><%= user.goals %></dd>
+
+  <dt>I'm willing to mentor.</dt>
+  <dd class="prewrap"><%= user.mentor_topics %></dd>
 </dl>
 
 <% if (currentUser.id == user.id) { %>

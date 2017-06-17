@@ -22,7 +22,8 @@ function findOne(id) {
     'mentor',
     'pending',
     'created_at',
-    'team_id'
+    'team_id',
+    'mentor_topics'
   ]
   return db.first(fields)
     .from('users').where('id', id);
