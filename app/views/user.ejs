@@ -1,8 +1,13 @@
+<%- include partials/alerts %>
+
 <h1><%= user.name %></h1>
 
 <dl>
   <dt>Github</dt>
   <dd><%= user.github_username %></dd>
+
+  <dt>Slack</dt>
+  <dd><%= user.slack_username %></dd>
 
   <dt>Programming Experience</dt>
   <dd class="prewrap"><%= user.programming_experience %></dd>
@@ -16,3 +21,7 @@
   <dt>Goals</dt>
   <dd class="prewrap"><%= user.goals %></dd>
 </dl>
+
+<% if (currentUser.id == user.id) { %>
+  <a class="btn btn-primary btn-sm" href="/users/<%= currentUser.id %>/edit">Edit Profile</a>
+<% } %>

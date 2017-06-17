@@ -25,9 +25,39 @@ module.exports = function(app, passport) {
   app.get('/users/:id', isLoggedIn, (request, response) => {
     User.findOne(request.params.id)
     .then(user => {
-      response.render('user', { user, currentUser: request.user });
+      response.render('user', {
+        currentUser: request.user,
+        alerts: [],
+        user,
+      });
     })
   });
+
+  // form for editing user
+  app.get('/users/:id/edit', (request, response) => {
+    response.render('editProfile', {
+      currentUser: request.user,
+      alerts: [],
+      user: request.user,
+    })
+  })
+
+  // edit user
+  app.post('/users/:id/edit', (request, response) => {
+    User.update(request.params.id, request.body)
+    .then(res => {
+      User.findOne(request.params.id)
+      .then(user => {
+        response.render('user', {
+          currentUser: request.user,
+          alerts: ['Profile updated'],
+          user,
+        });
+      })
+    })
+    .catch(err => console.log('User.edit err:', err))
+  })
+
 
   app.get('/teams', isLoggedIn, (request, response) => {
     Team.assignments()

@@ -1,0 +1,42 @@
+<h1>Edit Profile</h1>
+
+<%- include partials/alerts %>
+
+<form action="/users/<%= user.id %>/edit" method="post">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" name="name" value="<%= user.name %>">
+  </div>
+
+  <div class="form-group">
+    <label>Github username</label>
+    <input type="text" class="form-control" name="github_username" value="<%= user.github_username %>">
+  </div>
+
+  <div class="form-group">
+    <label>Slack username</label>
+    <input type="text" class="form-control" name="slack_username" value="<%= user.slack_username %>">
+  </div>
+
+  <div class="form-group">
+    <label>Programming experience</label>
+    <textarea class="form-control" name="programming_experience" rows="5"><%= user.programming_experience %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>languages</label>
+    <input type="text" class="form-control" name="languages" value="<%= user.languages %>">
+  </div>
+
+  <div class="form-group">
+    <label>location</label>
+    <input type="text" class="form-control" name="location" value="<%= user.location %>">
+  </div>
+
+  <div class="form-group">
+    <label>goals</label>
+    <textarea class="form-control" name="goals" rows="5"><%= user.goals %></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+</form>

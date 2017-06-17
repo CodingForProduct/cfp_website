@@ -13,6 +13,7 @@ function findOne(id) {
     'name',
     'email',
     'github_username',
+    'slack_username',
     'programming_experience',
     'languages',
     'location',
@@ -64,7 +65,9 @@ function create(data) {
   data = cleaners.trimPayload(data);
 
   ['admin', 'mentor', 'pending'].forEach( function(field) {
-    data[field] = cleaners.convertStringToBoolean(data[field]);
+    if(data[field]) {
+      data[field] = cleaners.convertStringToBoolean(data[field]);
+    }
   })
 
   if(!cleaners.validDate(data.created_at)) {
@@ -77,20 +80,20 @@ function create(data) {
 function update(id, data) {
   data = cleaners.trimPayload(data);
 
-  return db.from('users')
-  .update({
-    name: data.name,
-    email: data.email,
-    github_username: data.github_username,
-    programming_experience: data.programming_experience,
-    languages: data.languages,
-    location: data.location,
-    goals: data.goals,
-    admin: cleaners.convertStringToBoolean(data.admin),
-    pending: cleaners.convertStringToBoolean(data.pending),
-    mentor: cleaners.convertStringToBoolean(data.mentor),
-    team_id: data.team_id,
+  ['admin', 'mentor', 'pending'].forEach( function(field) {
+    if(data[field]) {
+      data[field] = cleaners.convertStringToBoolean(data[field]);
+    }
   })
+
+  if(!cleaners.validDate(data.created_at)) {
+    data.created_at  = null;
+  } else {
+    data.created_at = new Date(data.created_at)
+  }
+
+  return db.from('users')
+  .update(data)
   .where('id', id)
 }
 

@@ -37,7 +37,7 @@
               <ul class="dropdown-menu">
                 <li><a><%= currentUser.name %></a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="/users/<%= currentUser.id %>">Profile</a></li>
                 <% if (currentUser && currentUser.admin) { %>
                 <li><a href="/">Home</a></li>
                 <% } %>
