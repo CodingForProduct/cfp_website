@@ -22,6 +22,10 @@ module.exports = function(app, passport) {
     })
   });
 
+  app.get('/curriculum', (request, response) => {
+    response.render('curriculum', { currentUser: request.user });
+  });
+
   app.get('/users/:id', isLoggedIn, (request, response) => {
     User.findOne(request.params.id)
     .then(user => {
