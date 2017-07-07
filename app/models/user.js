@@ -30,7 +30,7 @@ function findOne(id) {
 }
 
 function findAll() {
-  return db.select('name', 'id', 'mentor', 'programming_experience', 'mentor_topics').from('users').orderBy('name');
+  return db.select('name', 'id', 'mentor', 'programming_experience', 'mentor_topics', 'team_id').from('users').orderBy('name');
 }
 
 function findAllByType(bool) {

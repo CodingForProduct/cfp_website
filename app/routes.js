@@ -64,12 +64,9 @@ module.exports = function(app, passport) {
 
 
   app.get('/teams', isLoggedIn, (request, response) => {
-    Team.assignments()
-    .then(results => {
-      const rows = results.rows;
-      const assignments = _.groupBy(rows, 'team_name')
-
-      response.render('teams', { assignments, currentUser: request.user })
+    Team.teamsWithMembers()
+    .then(teams => {
+      response.render('teams', { teams, currentUser: request.user })
     })
   })
 

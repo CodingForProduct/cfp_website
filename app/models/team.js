@@ -1,5 +1,6 @@
 var db = require('../../config/database');
 var cleaners = require('../services/dataCleaners');
+var User = require('./user');
 
 const languages = ['java', 'javascript', 'python', 'ruby'];
 const programming_experiences = {
@@ -9,17 +10,27 @@ const programming_experiences = {
 }
 
 
-function assignments() {
-  const sql = `select teams.name as team_name, users.id as user_id, users.name as user_name, teams.id as team_id, users.pending
-  from teams
-  join users
-  on users.team_id = teams.id
-  order by teams.name`;
-  return db.raw(sql);
+function teamsWithMembers() {
+  var teams;
+
+  return findAll()
+  .then((res) => {
+    teams = res;
+    return User.findAll();
+  })
+  .then((users) => {
+    return teams.map(function(team) {
+      var teamMembers = users.filter(function(user) {
+        return user.team_id === team.id;
+      });
+      team.users = teamMembers;
+      return team;
+    })
+  })
 }
 
 function findAll() {
-  return db.select('name', 'id').from('teams').orderBy('name');
+  return db.select().from('teams').orderBy('name');
 }
 
 function findOne(id) {
@@ -60,12 +71,12 @@ function deleteOne(id) {
 }
 
 module.exports = {
-  assignments,
   findAll,
   findOne,
   create,
   update,
   deleteOne,
   languages,
-  programming_experiences
+  programming_experiences,
+  teamsWithMembers
 }

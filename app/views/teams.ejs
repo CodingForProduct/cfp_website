@@ -1,13 +1,19 @@
 <h1>Teams</h1>
 
 <ol>
- <% Object.keys(assignments).forEach(function(team) { %>
+ <% teams.forEach(function(team) { %>
   <li>
-    <%= team %>
+    <% if (team.repo_url)  { %>
+    <a href="<%= team.repo_url %>"><%= team.name %></a>
+    <% } else { %>
+    <%= team.name %>
+    <% } %>
+
+    (<%= team.languages %> - <%= team.programming_experience %>)
     <ol>
-      <% assignments[team].forEach(function(user) { %>
+      <% team.users.forEach(function(user) { %>
         <li>
-          <a href='/users/<%= user.user_id %>' ><%= user.user_name %></a>
+          <a href='/users/<%= user.id %>' ><%= user.name %></a>
           <% if(user.pending) { %> (pending) <% } %>
         </li>
       <% }) %>
