@@ -34,6 +34,7 @@
     "express-ejs-layouts": "^2.3.0",
     "express-session": "^1.15.3",
     "express-validator": "^3.2.0",
+    "googleapis": "^20.1.0",
     "knex": "^0.13.0",
     "lodash": "^4.17.4",
     "passport": "^0.3.2",
