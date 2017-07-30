@@ -1,14 +1,17 @@
 
 var fs = require('fs');
 var readline = require('readline');
+var path = require('path');
+
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-var TOKEN_DIR =  __dirname + '/config/';
-var TOKEN_PATH = TOKEN_DIR + 'token.json';
+var CONFIG_DIR = 'config';
+var TOKEN_FILE = 'token.json';
+var SECRET_FILE = 'client_secret.json';
 
 function connectToSheets({cb, spreadsheetId, range}) {
   function configSheetConnection(auth) {
@@ -23,8 +26,10 @@ function connectToSheets({cb, spreadsheetId, range}) {
 }
 
 function connect(cb) {
+  var fullPath = path.join(__dirname, CONFIG_DIR, SECRET_FILE);
+
   // Load client secrets from a local file.
-  fs.readFile(TOKEN_DIR + 'client_secret.json', function (err, content) {
+  fs.readFile(fullPath, function (err, content) {
     if (err) {
       console.log('Error loading client secret file: ' + err);
       return;
@@ -50,8 +55,9 @@ function authorize(credentials, callback) {
   var auth = new googleAuth();
   var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
+  var fullPath = path.join(__dirname, CONFIG_DIR, TOKEN_FILE);
   // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, function(err, token) {
+  fs.readFile(fullPath, function(err, token) {
     if (err) {
       getNewToken(oauth2Client, callback);
     } else {
