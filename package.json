@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon app.js",
     "start": "NODE_ENV=production node app.js",
-    "migrate": "knex migrate:latest"
+    "migrate": "knex migrate:latest",
+    "import:feedback": "node app/google_forms/lecture_feedback.js",
+    "import:tech": "node app/google_forms/tech_career_advice.js"
   },
   "engines": {
     "node": "7.6.0"
