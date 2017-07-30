@@ -1,0 +1,9 @@
+<h1>Tech Career Advice</h1>
+
+<ul>
+  <% careers.forEach((career) => { %>
+  <li>
+    <a href="/tech_careers/<%= career.id %>"><%= career.name || 'Anonymous' %></a> (<%= career.job_title %>)
+  </li>
+  <% }) %>
+</ul>

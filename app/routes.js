@@ -1,5 +1,8 @@
 var User = require('./models/user');
 var Team = require('./models/team');
+var TechCareer = require('./models/tech_career');
+const emailEncoder = require('email-encoder');
+
 var _ = require('lodash');
 
 module.exports = function(app, passport) {
@@ -67,6 +70,30 @@ module.exports = function(app, passport) {
     Team.teamsWithMembers()
     .then(teams => {
       response.render('teams', { teams, currentUser: request.user })
+    })
+  })
+
+  app.get('/tech_careers', (request, response) => {
+    var query;
+    if(request.user) {
+      query = TechCareer.findAll()
+    } else {
+       query = TechCareer.findAll({public: true})
+    }
+
+    query
+    .then(careers => {
+      response.render('tech_careers', { careers, currentUser: request.user })
+    })
+  })
+
+  app.get('/tech_careers/:id', (request, response) => {
+    TechCareer.findOne(request.params.id)
+    .then(career => {
+      if(career.contact && career.contact != '') {
+        career.contact = emailEncoder(career.contact)
+      }
+      response.render('tech_career', { career, currentUser: request.user })
     })
   })
 

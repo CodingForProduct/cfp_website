@@ -1,0 +1,18 @@
+<h1>Tech Career Advice: <%= career.name || 'Anonymous' %></h1>
+
+<dl>
+  <dt>Job Title</dt>
+  <dd class="prewrap"><%= career.job_title %></dd>
+
+  <dt>There are various career options in tech. How did you get interested in your field?</dt>
+  <dd class="prewrap"><%= career.your_start %></dd>
+
+  <dt>What do you enjoy about your job? What are some of typical day-to-day responsibilities?</dt>
+  <dd class="prewrap"><%= career.your_job %></dd>
+
+  <dt>What advice to you have for people interested in pursuing a career in your field?</dt>
+  <dd class="prewrap"><%= career.advice %></dd>
+
+  <dt>Contact Info</dt>
+  <dd><%- career.contact %></dd>
+</dl>
