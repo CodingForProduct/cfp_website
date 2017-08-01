@@ -1,5 +1,5 @@
 var googleService = require('./googleService');
-var LectureFeedback = require('../models/lecture_feedback');
+var LectureFeedback = require('../models/course_feedback');
 var db = require('../../config/database');
 
 var feedbackWeek;
@@ -76,26 +76,26 @@ function processFeedback(err, response, week) {
 }
 
 const week1 = {
-  spreadsheetId: process.env.LECTURE_FEEDBACK_WK1_SHEET_ID,
-  range: process.env.LECTURE_FEEDBACK_SHEET_RANGE,
+  spreadsheetId: process.env.COURSE_FEEDBACK_WK1_SHEET_ID,
+  range: process.env.COURSE_FEEDBACK_SHEET_RANGE,
   cb: processFirstFeedback,
 }
 
 const week2 = {
-  spreadsheetId: process.env.LECTURE_FEEDBACK_WK2_SHEET_ID,
-  range: process.env.LECTURE_FEEDBACK_SHEET_RANGE,
+  spreadsheetId: process.env.COURSE_FEEDBACK_WK2_SHEET_ID,
+  range: process.env.COURSE_FEEDBACK_SHEET_RANGE,
   cb: processSecondWeek,
 }
 
 const week3 = {
-  spreadsheetId: process.env.LECTURE_FEEDBACK_WK3_SHEET_ID,
-  range: process.env.LECTURE_FEEDBACK_SHEET_RANGE,
+  spreadsheetId: process.env.COURSE_FEEDBACK_WK3_SHEET_ID,
+  range: process.env.COURSE_FEEDBACK_SHEET_RANGE,
   cb: processThirdWeek,
 }
 
 const week4 = {
-  spreadsheetId: process.env.LECTURE_FEEDBACK_WK4_SHEET_ID,
-  range: process.env.LECTURE_FEEDBACK_SHEET_RANGE,
+  spreadsheetId: process.env.COURSE_FEEDBACK_WK4_SHEET_ID,
+  range: process.env.COURSE_FEEDBACK_SHEET_RANGE,
   cb: processFourthWeek,
 }
 

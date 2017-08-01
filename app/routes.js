@@ -1,7 +1,7 @@
 var User = require('./models/user');
 var Team = require('./models/team');
 var TechCareer = require('./models/tech_career');
-var LectureFeedback = require('./models/lecture_feedback');
+var LectureFeedback = require('./models/course_feedback');
 
 const emailEncoder = require('email-encoder');
 

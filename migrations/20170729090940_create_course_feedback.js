@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('lecture_feedbacks', function (table) {
+  return knex.schema.createTable('course_feedbacks', function (table) {
     table.increments();
     table.string('name');
     table.text('start');
@@ -15,5 +15,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('lecture_feedbacks');
+  return knex.schema.dropTable('course_feedbacks');
 };
