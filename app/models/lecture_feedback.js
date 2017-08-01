@@ -4,4 +4,8 @@ function create(data) {
   return db.from('lecture_feedbacks').insert(data);
 }
 
-module.exports  = { create };
+function findByWeek(week) {
+  return db.from('lecture_feedbacks').where({week: week, public: true});
+}
+
+module.exports  = { create, findByWeek };

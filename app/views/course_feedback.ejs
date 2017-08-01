@@ -1,0 +1,19 @@
+<h1>Course Feedback: Week <%= feedbacks[0] && feedbacks[0].week %></h1>
+
+<% feedbacks.forEach(function(feedback, i) { %>
+  <h3>User <%= i + 1 %></h3>
+  <dl>
+    <dt>What we should start doing in future workshops?</dt>
+    <dl class="prewrap"><%= feedback.start %></dl>
+
+    <dt>What we should continue doing in future workshops?</dt>
+    <dl class="prewrap"><%= feedback.continue %></dl>
+
+    <dt>What we should stop doing in future workshops?</dt>
+    <dl class="prewrap"><%= feedback.stop %></dl>
+
+    <dt>Any additional comments?</dt>
+    <dl class="prewrap"><%= feedback.additional %></dl>
+  </dl>
+<% }) %>
+

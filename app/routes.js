@@ -1,6 +1,8 @@
 var User = require('./models/user');
 var Team = require('./models/team');
 var TechCareer = require('./models/tech_career');
+var LectureFeedback = require('./models/lecture_feedback');
+
 const emailEncoder = require('email-encoder');
 
 var _ = require('lodash');
@@ -94,6 +96,13 @@ module.exports = function(app, passport) {
         career.contact = emailEncoder(career.contact)
       }
       response.render('tech_career', { career, currentUser: request.user })
+    })
+  })
+
+  app.get('/course_feedback/week/:id', (request, response) => {
+    LectureFeedback.findByWeek(request.params.id)
+    .then(feedbacks => {
+      response.render('course_feedback', { feedbacks, currentUser: request.user })
     })
   })
 
