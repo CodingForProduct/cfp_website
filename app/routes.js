@@ -99,7 +99,7 @@ module.exports = function(app, passport) {
     })
   })
 
-  app.get('/course_feedback/week/:id', (request, response) => {
+  app.get('/course_feedback/week/:id', isLoggedIn, (request, response) => {
     LectureFeedback.findByWeek(request.params.id)
     .then(feedbacks => {
       response.render('course_feedback', { feedbacks, currentUser: request.user })
